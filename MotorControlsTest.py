@@ -14,25 +14,35 @@ motor1 = Motor(Channels)
 
 DriveController = L298NMotorDriveController(motor1, motor1)
 
+print("Moving Forwards")
 DriveController.MoveForwards()
 time.sleep(5)
 
+print("Stopping")
 DriveController.Stop()
 time.sleep(5)
 
+print("Moving BackWards")
 DriveController.MoveBackwards()
 time.sleep(5)
 
+print("Stopping")
 DriveController.Stop()
 time.sleep(5)
 
+print("Turning Left")
 DriveController.TurnLeft()
 time.sleep(5)
 
+print("Stopping")
 DriveController.Stop()
 time.sleep(5)
 
+print("Turning Right")
 DriveController.TurnRight()
 time.sleep(5)
+
+print("Stopping")
+DriveController.Stop()
 
 GPIO.cleanup()
