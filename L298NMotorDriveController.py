@@ -9,20 +9,20 @@ class L298NMotorDriveController():
         self._motorB = motorB
 
     def MoveForwards(self):
-        self._motorA.RotateClockWise()
-        self._motorB.RotateCounterClockWise()
+        self._motorA.RotateClockwise()
+        self._motorB.RotateCounterClockwise()
 
     def MoveBackwards(self):
-        self._motorA.RotateCounterClockWise()
-        self._motorB.RotateClockWise()
+        self._motorA.RotateCounterClockwise()
+        self._motorB.RotateClockwise()
 
     def TurnLeft(self):
-        self._motorA.RotateClockWise()
-        self._motorB.RotateClockWise()
+        self._motorA.RotateClockwise()
+        self._motorB.RotateClockwise()
 
     def TurnRight(self):
-        self._motorA.RotateCounterClockWise()
-        self._motorB.RotateCounterClockWise()
+        self._motorA.RotateCounterClockwise()
+        self._motorB.RotateCounterClockwise()
     
     def Stop(self):
         self._motorA.Stop()
