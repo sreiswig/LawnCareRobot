@@ -1,5 +1,5 @@
 import Jetson.GPIO as GPIO
-from L298NMotorDriveController import MotorController
+from L298NMotorDriveController import L298NMotorDriveController
 from Motor import Motor
 import time
 
