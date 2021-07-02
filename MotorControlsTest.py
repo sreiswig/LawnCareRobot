@@ -1,7 +1,9 @@
 import Jetson.GPIO as GPIO
-from L298NMotorDriveController import L298NMotorDriveController
+from L298NMotorDriveController import L298NTrackMotorController
 from Motor import Motor
 import time
+
+# Script to test the Motors used 
 
 GPIO.setmode(GPIO.BOARD)
 
@@ -15,7 +17,7 @@ GPIO.setup(Channels, GPIO.OUT)
 motor1 = Motor(motor1Pins)
 motor2 = Motor(motor2Pins)
 
-DriveController = L298NMotorDriveController(motor1, motor2)
+DriveController = L298NTrackMotorController(motor1, motor2)
 
 print("Moving Forwards")
 DriveController.MoveForwards()
@@ -25,7 +27,7 @@ print("Stopping")
 DriveController.Stop()
 time.sleep(5)
 
-print("Moving BackWards")
+print("Moving Backwards")
 DriveController.MoveBackwards()
 time.sleep(5)
 
