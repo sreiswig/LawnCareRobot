@@ -6,13 +6,16 @@ import time
 GPIO.setmode(GPIO.BOARD)
 
 # TO-DO: Make and Read from JSON init file
-Channels = [35, 37]
+Channels = [31, 33, 35, 37]
+motor1Pins = [35, 37]
+motor2Pins = [31, 33]
 
 GPIO.setup(Channels, GPIO.OUT)
 
-motor1 = Motor(Channels)
+motor1 = Motor(motor1Pins)
+motor2 = Motor(motor2Pins)
 
-DriveController = L298NMotorDriveController(motor1, motor1)
+DriveController = L298NMotorDriveController(motor1, motor2)
 
 print("Moving Forwards")
 DriveController.MoveForwards()
