@@ -1,6 +1,6 @@
 from Motor import Motor
 
-class L298NMotorDriveController():
+class L298NTrackMotorController():
     _motorA = Motor()
     _motorB = Motor()
 
@@ -27,3 +27,13 @@ class L298NMotorDriveController():
     def Stop(self):
         self._motorA.Stop()
         self._motorB.Stop()
+
+class L298NArmAndPumpController():
+    _pump = []
+    _arm = []
+
+    def __init__(self, pump, arm):
+        self._pump = pump
+        self._arm = arm
+
+    
