@@ -3,7 +3,7 @@ import Jetson.GPIO as GPIO
 class Motor:
     _controlPins = []
 
-    def __init__(self, controlPins):
+    def __init__(self, controlPins=[1, 2]):
         self._controlPins = controlPins
 
     def Stop(self):
