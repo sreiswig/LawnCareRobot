@@ -7,12 +7,12 @@ class Motor:
         self._controlPins = controlPins
 
     def Stop(self):
-        GPIO.output(_controlPins, GPIO.LOW)
+        GPIO.output(self._controlPins, GPIO.LOW)
 
     def RotateClockwise(self):
-        GPIO.output(_controlPins[0], GPIO.LOW)
-        GPIO.output(_controlPins[1], GPIO.HIGH)
+        GPIO.output(self._controlPins[0], GPIO.LOW)
+        GPIO.output(self._controlPins[1], GPIO.HIGH)
 
     def RotateCounterClockwise(self):
-        GPIO.output(_controlPins[0], GPIO.HIGH)
-        GPIO.output(_controlPins[1], GPIO.LOW)
+        GPIO.output(self._controlPins[0], GPIO.HIGH)
+        GPIO.output(self._controlPins[1], GPIO.LOW)
