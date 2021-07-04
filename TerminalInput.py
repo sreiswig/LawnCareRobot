@@ -20,17 +20,21 @@ motor2 = Motor(motor2Pins)
 
 DriveController = L298NTrackMotorController(motor1, motor2)
 
-input = "start"
-while input != "stop":
-    input = input("Enter Command")
+command = "start"
+while command != "stop":
+    command = input("Enter Command")
 
-    if(input == "w"):
+    if(command == "w"):
         DriveController.MoveForwards()
-    if(input == "s"):
+        continue
+    if(command == "s"):
         DriveController.MoveBackwards()
-    if(input == "a"):
+        continue
+    if(command == "a"):
         DriveController.TurnLeft()
-    if(input == "d"):
+        continue
+    if(command == "d"):
         DriveController.TurnRight()
+        continue
 
 GPIO.cleanup()
