@@ -37,4 +37,5 @@ while command != "stop":
         DriveController.TurnRight()
         continue
 
+DriveController.Stop()
 GPIO.cleanup()
