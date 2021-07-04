@@ -22,7 +22,7 @@ DriveController = L298NTrackMotorController(motor1, motor2)
 
 command = "start"
 while command != "stop":
-    command = raw_input("Enter Command: ")
+    command = input("Enter Command: ")
 
     if(command == "w"):
         DriveController.MoveForwards()
