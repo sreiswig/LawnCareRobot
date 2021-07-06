@@ -36,4 +36,13 @@ class L298NArmAndPumpController():
         self._pump = pump
         self._arm = arm
 
+    def RotateArmLeft(self):
+        self._arm.RotateCounterClockwise()
+
+    def RotateArmRight(self):
+        self._arm.RotateClockwise()
+
+    def Spray(self):
+        # TO-DO: Pump Control
+        print("Pump Controls Not Made Yet")
     

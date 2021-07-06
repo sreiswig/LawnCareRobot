@@ -36,6 +36,9 @@ while command != "stop":
     if(command == "d"):
         DriveController.TurnRight()
         continue
+    if(command == " "):
+        DriveController.Stop()
+        continue
 
 DriveController.Stop()
 GPIO.cleanup()
