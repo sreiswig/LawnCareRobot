@@ -13,7 +13,7 @@ def on_message(client, userdata, message):
 def main():
     
     # Read from some generic config file in json format
-    settings = json.loads("config.ini")
+    settings = json.loads("config.json")
 
     host = settings["host"]
     client = mqtt.Client("LawnRobot")
