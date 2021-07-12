@@ -25,6 +25,7 @@ MqttCredentials["host"] = input("Enter Host IP: ")
 
 config.append(DriveController)
 config.append(PumpAndArmController)
+config.append(MqttCredentials)
 
 with open('config.json', 'w') as outfile:
     json.dump(config, outfile)
