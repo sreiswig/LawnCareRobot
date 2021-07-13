@@ -10,7 +10,7 @@ def on_message(client, userdata, message):
     return message
 
 def read_config():
-    with open("Python/config.json") as config_file:
+    with open("config.json") as config_file:
         config = json.load(config_file)
     
     return config
