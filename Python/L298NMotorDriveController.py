@@ -9,7 +9,7 @@ class L298NTrackMotorController():
         self._motorB = motorB
 
     def MoveBackwards(self):
-        self._motorA.RotateCoClockwise()
+        self._motorA.RotateClockwise()
         self._motorB.RotateCounterClockwise()
 
     def MoveForwards(self):
