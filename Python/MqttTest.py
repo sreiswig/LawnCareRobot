@@ -29,6 +29,9 @@ def main():
     client.on_message = on_message
     client.loop_start()
     client.subscribe("robotCommands")
+    command = "start"
+    while command != "stop":
+        command = input()
 
 if __name__ == '__main__':
     main()
