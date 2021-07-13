@@ -25,5 +25,10 @@ def main():
 
     client.publish("robotCommands", "Hello From Robot")
 
+    # attach to callback
+    client.on_message = on_message
+    client.loop_start()
+    client.subscribe("robotCommands")
+
 if __name__ == '__main__':
     main()
