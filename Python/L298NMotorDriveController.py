@@ -47,5 +47,8 @@ class L298NArmAndPumpController():
 
     def Spray(self):
         # TO-DO: Pump Control
-        print("Pump Controls Not Made Yet")
+        self._pump.RotateClockwise()
+
+    def StopPump(self):
+        self._pump.Stop()
     

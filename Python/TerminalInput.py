@@ -60,5 +60,13 @@ while command != "stop":
         ArmController.StopArm()
         continue
 
+    if(command == "f"):
+        ArmController.Spray()
+        continue
+
+    if(command == "stopPump"):
+        ArmController.StopPump()
+        continue
+
 DriveController.Stop()
 GPIO.cleanup()
