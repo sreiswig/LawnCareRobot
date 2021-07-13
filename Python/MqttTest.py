@@ -9,18 +9,21 @@ def on_message(client, userdata, message):
     print("message received " , str(message.payload.decode("utf-8")))
     return message
 
+def read_config():
+    with open("config.json") as config_file:
+        config = json.load(config_file)
+    
+    return config
+
 # Terminate using command line
 def main():
-    
     # Read from some generic config file in json format
-    settings = json.loads("config.json")
-
-    host = settings["host"]
+    config = read_config()
+    mqttConfig = config["mqtt"]
     client = mqtt.Client("LawnRobot")
-    client.connect(host)
+    client.connect(mqttConfig["host"])
 
     # Script to test the Motors used 
-
     GPIO.setmode(GPIO.BOARD)
 
     # TO-DO: Make and Read from JSON init file

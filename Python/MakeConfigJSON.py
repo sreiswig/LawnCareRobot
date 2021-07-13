@@ -18,14 +18,12 @@ Pump["pin1"] = input("Enter Pump pin1: ")
 Pump["pin2"] = input("Enter Pump pin2: ")
 Arm["pin1"] = input("Enter Arm pin1: ")
 Arm["pin2"] = input("Enter Arm pin2: ")
-DriveController = { "motor1" : Motor1 , "motor2" : Motor2 }
+DriveController = {"motor" : [ Motor1 , Motor2 ]}
 PumpAndArmController = { "pump" : Pump , "arm" : Arm }
 MqttCredentials["clientId"] = input("Enter MQTT clientId: ")
 MqttCredentials["host"] = input("Enter Host IP: ")
 
-config.append(DriveController)
-config.append(PumpAndArmController)
-config.append(MqttCredentials)
+config = { "driveController" : DriveController, "pumpAndArmController" : PumpAndArmController, "mqtt" : MqttCredentials }
 
 with open('config.json', 'w') as outfile:
     json.dump(config, outfile)
