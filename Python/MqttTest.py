@@ -27,7 +27,7 @@ def main():
     GPIO.setmode(GPIO.BOARD)
 
     # TO-DO: Make and Read from JSON init file
-    Channels = [27, 29, 31, 33, 35, 37]
+    Channels = [25, 29, 31, 33, 35, 37]
     motor1Pins = [35, 37]
     motor2Pins = [31, 33]
     armPins = [27, 29]
