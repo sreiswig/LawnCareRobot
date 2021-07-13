@@ -28,27 +28,37 @@ ArmController = L298NArmAndPumpController(pump, arm)
 command = "start"
 while command != "stop":
     command = input("Enter Command: ")
-
     if(command == "w"):
         DriveController.MoveForwards()
         continue
+    
     if(command == "s"):
         DriveController.MoveBackwards()
         continue
+    
     if(command == "a"):
         DriveController.TurnLeft()
         continue
+    
     if(command == "d"):
         DriveController.TurnRight()
         continue
+    
     if(command == " "):
         DriveController.Stop()
         continue
+    
     if(command == "q"):
         ArmController.RotateArmLeft()
         continue
+    
     if(command == "e"):
         ArmController.RotateArmRight()
+        continue
+    
+    if(command == "stopArm"):
+        ArmController.StopArm()
+        continue
 
 DriveController.Stop()
 GPIO.cleanup()

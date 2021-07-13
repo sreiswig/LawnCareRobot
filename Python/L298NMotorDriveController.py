@@ -41,6 +41,9 @@ class L298NArmAndPumpController():
 
     def RotateArmRight(self):
         self._arm.RotateClockwise()
+    
+    def StopArm(self):
+        self._arm.Stop()
 
     def Spray(self):
         # TO-DO: Pump Control
