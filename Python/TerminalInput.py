@@ -64,6 +64,10 @@ while command != "stop":
         ArmController.Spray()
         continue
 
+    if(command == "g"):
+        ArmController.Reverse()
+        continue
+
     if(command == "stopPump"):
         ArmController.StopPump()
         continue

@@ -49,6 +49,9 @@ class L298NArmAndPumpController():
         # TO-DO: Pump Control
         self._pump.RotateClockwise()
 
+    def Reverse(self):
+        self._pump.RotateCounterClockwise()
+
     def StopPump(self):
         self._pump.Stop()
     
