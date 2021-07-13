@@ -9,11 +9,11 @@ import time
 GPIO.setmode(GPIO.BOARD)
 
 # TO-DO: Make and Read from JSON init file
-Channels = [27, 29, 31, 33, 35, 37]
+Channels = [19, 21, 23, 29, 31, 33, 35, 37]
 motor1Pins = [35, 37]
 motor2Pins = [31, 33]
-armPins = [27, 29]
-pumpPins = [23, 25]
+armPins = [23, 29]
+pumpPins = [19, 21]
 
 GPIO.setup(Channels, GPIO.OUT)
 
