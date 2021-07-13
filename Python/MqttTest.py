@@ -23,5 +23,7 @@ def main():
     client = mqtt.Client("LawnRobot")
     client.connect(mqttConfig["host"])
 
+    client.publish("robotCommands", "Hello From Robot")
+
 if __name__ == '__main__':
     main()
