@@ -77,5 +77,5 @@ if "mqtt" in config.keys():
     client.on_message = on_message
     client.publish("robotCommands", "Robot Initialized")
     client.subscribe("robotCommands")
-    client.start_loop()
+    client.loop_start()
     client.loop_forever()
