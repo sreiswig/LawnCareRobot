@@ -75,6 +75,7 @@ if "mqtt" in config.keys():
     client.connect(mqttHost)
     # attach to callback
     client.on_message = on_message
-    client.loop_forever()
     client.publish("robotCommands", "Robot Initialized")
     client.subscribe("robotCommands")
+    client.start_loop()
+    client.loop_forever()
