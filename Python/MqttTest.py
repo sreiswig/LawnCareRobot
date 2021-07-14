@@ -7,7 +7,6 @@ import paho.mqtt.client as mqtt
 
 def on_message(client, userdata, message):
     print("message received " , str(message.payload.decode("utf-8")))
-    command = message
     return message
 
 def read_config():
@@ -32,8 +31,9 @@ def main():
     client.subscribe("robotCommands")
     command = "start"
     while command != "stop":
-        if(command == "hello"):
-            client.publish("robotCommands", "Hello From Robot")
+        command = input("Enter 'stop' to quit: ")
+
+    
 
 if __name__ == '__main__':
     main()
