@@ -63,8 +63,8 @@ if "driveController" in config.keys():
         print("Initializing Drive Controller")
         motor1Pins = [config["driveController"]["motor"][0]["pin1"], config["driveController"]["motor"][0]["pin2"]]
         motor2Pins = [config["driveController"]["motor"][1]["pin1"], config["driveController"]["motor"][1]["pin2"]]
-        driveMotor1 = Motor(motor1Pins[0], motor1Pins[1])
-        driveMotor2 = Motor(motor2Pins[0], motor2Pins[1])
+        driveMotor1 = Motor(motor1Pins)
+        driveMotor2 = Motor(motor2Pins)
         DriveController = L298NTrackMotorController(driveMotor1, driveMotor2)
         Channels.append(motor1Pins)
         Channels.append(motor2Pins)
@@ -74,8 +74,8 @@ if "pumpAndArmController" in config.keys():
         print("Initializing Pump and Arm Controller")
         pumpPins = [config["pumpAndArmController"]["pump"]["pin1"], config["pumpAndArmController"]["pump"]["pin2"]]
         armPins = [config["pumpAndArmController"]["arm"]["pin1"], config["pumpAndArmController"]["arm"]["pin2"]]
-        pump = Motor(pumpPins[0], pumpPins[1])
-        arm = Motor(armPins[0], armPins[1])
+        pump = Motor(pumpPins)
+        arm = Motor(armPins)
         ArmController = L298NArmAndPumpController(pump, arm)
         Channels.append(pumpPins)
         Channels.append(armPins)
