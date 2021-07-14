@@ -12,6 +12,7 @@ def on_message(client, userdata, message):
     print("message received " , str(message.payload.decode("utf-8")))
     if(message == "w"):
         DriveController.MoveForwards()
+        print("DriveController.MoveForwards Commands was executed")
     
     if(message == "s"):
         DriveController.MoveBackwards()
@@ -56,6 +57,7 @@ def main():
     config = read_config()
     if "driveController" in config.keys():
         if "motor" in config["driveController"].keys():
+            print("driveController initialized")
             driveMotor1 = Motor([config["driveController"]["motor"][0]["pin1"], config["driveController"]["motor"][0]["pin2"]])
             driveMotor2 = Motor([config["driveController"]["motor"][1]["pin1"], config["driveController"]["motor"][1]["pin2"]])
             DriveController = L298NTrackMotorController(driveMotor1, driveMotor2)
@@ -64,7 +66,7 @@ def main():
         if "pump" in config["pumpAndArmController"].keys():
             pump = Motor([config["pumpAndArmController"]["pump"]["pin1"], config["pumpAndArmController"]["pump"]["pin2"]])
             arm = Motor([config["pumpAndArmController"]["arm"]["pin1"], config["pumpAndArmController"]["arm"]["pin2"]])
-            PumpAndArmController = L298NArmAndPumpController(pump, arm)
+            ArmController = L298NArmAndPumpController(pump, arm)
 
     if "mqtt" in config.keys():
         mqttClientId = config["mqtt"]["clientId"]
