@@ -39,6 +39,12 @@ def on_message(client, userdata, message):
 
     if(message == "stopPump"):
         ArmController.StopPump()
+
+    if(message == "stop"):
+        DriveController.Stop()
+        ArmController.Stop()
+        client.disconnect()
+
     return message
 
 def read_config():
@@ -69,17 +75,6 @@ if "mqtt" in config.keys():
     client.connect(mqttHost)
     # attach to callback
     client.on_message = on_message
-    client.loop_start()
+    client.loop_forever()
     client.publish("robotCommands", "Robot Initialized")
     client.subscribe("robotCommands")
-
-# Terminate using command line
-def main():    
-    command = "start"
-    while command != "stop":
-        command = input("Enter 'stop' to quit: ")
-
-    
-
-if __name__ == '__main__':
-    main()
