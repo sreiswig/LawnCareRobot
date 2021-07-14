@@ -23,7 +23,7 @@ def main():
     client = mqtt.Client("LawnRobot")
     client.connect(mqttConfig["host"])
 
-    client.publish("robotCommands", "Hello From Robot")
+    client.publish("robotCommands", "Robot Initialized")
 
     # attach to callback
     client.on_message = on_message
@@ -31,7 +31,8 @@ def main():
     client.subscribe("robotCommands")
     command = "start"
     while command != "stop":
-        command = input()
+        if(command == "hello"):
+            client.publish("robotCommands", "Hello From Robot")
 
 if __name__ == '__main__':
     main()
