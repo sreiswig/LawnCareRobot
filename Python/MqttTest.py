@@ -66,8 +66,8 @@ if "driveController" in config.keys():
         driveMotor1 = Motor(motor1Pins)
         driveMotor2 = Motor(motor2Pins)
         DriveController = L298NTrackMotorController(driveMotor1, driveMotor2)
-        Channels.append(motor1Pins)
-        Channels.append(motor2Pins)
+        Channels + motor1Pins
+        Channels + motor2Pins
 
 if "pumpAndArmController" in config.keys():
     if "pump" in config["pumpAndArmController"].keys():
@@ -77,8 +77,8 @@ if "pumpAndArmController" in config.keys():
         pump = Motor(pumpPins)
         arm = Motor(armPins)
         ArmController = L298NArmAndPumpController(pump, arm)
-        Channels.append(pumpPins)
-        Channels.append(armPins)
+        Channels + pumpPins
+        Channels + armPins
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(Channels, GPIO.OUT)
