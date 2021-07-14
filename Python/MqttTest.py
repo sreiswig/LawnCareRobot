@@ -7,6 +7,7 @@ import paho.mqtt.client as mqtt
 
 def on_message(client, userdata, message):
     print("message received " , str(message.payload.decode("utf-8")))
+    command = message
     return message
 
 def read_config():
