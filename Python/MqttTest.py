@@ -42,6 +42,7 @@ def on_message(client, userdata, message):
         ArmController.StopPump()
 
     if(command == "stop"):
+        GPIO.cleanup()
         DriveController.Stop()
         ArmController.Stop()
         client.disconnect()
@@ -55,19 +56,31 @@ def read_config():
     return config
 
 # Read from some generic config file in json format
+Channels = []
 config = read_config()
 if "driveController" in config.keys():
     if "motor" in config["driveController"].keys():
-        print("driveController initialized")
-        driveMotor1 = Motor([config["driveController"]["motor"][0]["pin1"], config["driveController"]["motor"][0]["pin2"]])
-        driveMotor2 = Motor([config["driveController"]["motor"][1]["pin1"], config["driveController"]["motor"][1]["pin2"]])
+        print("Initializing Drive Controller")
+        motor1Pins = [config["driveController"]["motor"][0]["pin1"], config["driveController"]["motor"][0]["pin2"]]
+        motor2Pins = [config["driveController"]["motor"][1]["pin1"], config["driveController"]["motor"][1]["pin2"]]
+        driveMotor1 = Motor(motor1Pins[0], motor1Pins[1])
+        driveMotor2 = Motor(motor2Pins[0], motor2Pins[1])
         DriveController = L298NTrackMotorController(driveMotor1, driveMotor2)
+        Channels.append(motor1Pins)
+        Channels.append(motor2Pins)
 
 if "pumpAndArmController" in config.keys():
     if "pump" in config["pumpAndArmController"].keys():
-        pump = Motor([config["pumpAndArmController"]["pump"]["pin1"], config["pumpAndArmController"]["pump"]["pin2"]])
-        arm = Motor([config["pumpAndArmController"]["arm"]["pin1"], config["pumpAndArmController"]["arm"]["pin2"]])
+        print("Initializing Pump and Arm Controller")
+        pumpPins = [config["pumpAndArmController"]["pump"]["pin1"], config["pumpAndArmController"]["pump"]["pin2"]]
+        armPins = [config["pumpAndArmController"]["arm"]["pin1"], config["pumpAndArmController"]["arm"]["pin2"]]
+        pump = Motor(pumpPins[0], pumpPins[1])
+        arm = Motor(armPins[0], armPins[1])
         ArmController = L298NArmAndPumpController(pump, arm)
+        Channels.append(pumpPins)
+        Channels.append(armPins)
+
+GPIO.setup(Channels, GPIO.OUT)
 
 if "mqtt" in config.keys():
     mqttClientId = config["mqtt"]["clientId"]
