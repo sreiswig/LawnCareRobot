@@ -41,7 +41,7 @@ def on_message(client, userdata, message):
     if(command == "stopPump"):
         ArmController.StopPump()
 
-    if(command == "stop"):
+    if(command == "shutdown"):
         DriveController.Stop()
         ArmController.Stop()
         GPIO.cleanup()
