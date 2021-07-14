@@ -42,9 +42,9 @@ def on_message(client, userdata, message):
         ArmController.StopPump()
 
     if(command == "stop"):
-        GPIO.cleanup()
         DriveController.Stop()
         ArmController.Stop()
+        GPIO.cleanup()
         client.disconnect()
 
     return message
@@ -66,8 +66,8 @@ if "driveController" in config.keys():
         driveMotor1 = Motor(motor1Pins)
         driveMotor2 = Motor(motor2Pins)
         DriveController = L298NTrackMotorController(driveMotor1, driveMotor2)
-        Channels + motor1Pins
-        Channels + motor2Pins
+        Channels = Channels + motor1Pins
+        Channels = Channels + motor2Pins
 
 if "pumpAndArmController" in config.keys():
     if "pump" in config["pumpAndArmController"].keys():
@@ -77,8 +77,8 @@ if "pumpAndArmController" in config.keys():
         pump = Motor(pumpPins)
         arm = Motor(armPins)
         ArmController = L298NArmAndPumpController(pump, arm)
-        Channels + pumpPins
-        Channels + armPins
+        Channels = Channels + pumpPins
+        Channels = Channels + armPins
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(Channels, GPIO.OUT)
