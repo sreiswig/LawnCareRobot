@@ -1,4 +1,4 @@
-import cv2
+import cv2 as cv
 import numpy as np
 
 # Capture from csi 0
