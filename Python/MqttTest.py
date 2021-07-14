@@ -7,40 +7,41 @@ import paho.mqtt.client as mqtt
 
 def on_message(client, userdata, message):
     print("message received " , str(message.payload.decode("utf-8")))
-    if(message == "w"):
+    command = str(message.payload.decode("utf-8"))
+    if(command == "w"):
         DriveController.MoveForwards()
     
-    if(message == "s"):
+    if(command == "s"):
         DriveController.MoveBackwards()
     
-    if(message == "a"):
+    if(command == "a"):
         DriveController.TurnLeft()
     
-    if(message == "d"):
+    if(command == "d"):
         DriveController.TurnRight()
     
-    if(message == " "):
+    if(command == " "):
         DriveController.Stop()
     
-    if(message == "q"):
+    if(command == "q"):
         ArmController.RotateArmLeft()
     
-    if(message == "e"):
+    if(command == "e"):
         ArmController.RotateArmRight()
     
-    if(message == "stopArm"):
+    if(command == "stopArm"):
         ArmController.StopArm()
 
-    if(message == "f"):
+    if(command == "f"):
         ArmController.Spray()
 
-    if(message == "g"):
+    if(command == "g"):
         ArmController.Reverse()
 
-    if(message == "stopPump"):
+    if(command == "stopPump"):
         ArmController.StopPump()
 
-    if(message == "stop"):
+    if(command == "stop"):
         DriveController.Stop()
         ArmController.Stop()
         client.disconnect()
