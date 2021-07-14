@@ -54,4 +54,8 @@ class L298NArmAndPumpController():
 
     def StopPump(self):
         self._pump.Stop()
+
+    def Stop(self):
+        self._pump.Stop()
+        self._arm.Stop()
     
