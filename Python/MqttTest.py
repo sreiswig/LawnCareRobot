@@ -81,6 +81,7 @@ if "pumpAndArmController" in config.keys():
         Channels = Channels + armPins
 
 GPIO.setmode(GPIO.BOARD)
+print(Channels)
 GPIO.setup(Channels, GPIO.OUT)
 
 if "mqtt" in config.keys():
