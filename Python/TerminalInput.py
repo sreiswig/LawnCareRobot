@@ -3,27 +3,42 @@ from L298NMotorDriveController import L298NTrackMotorController
 from L298NMotorDriveController import L298NArmAndPumpController
 from Motor import Motor
 import time
+import json
 
-# Script to test the Motors used 
+def read_config():
+    with open("config.json") as config_file:
+        config = json.load(config_file)
+    
+    return config
+
+# Read from some generic config file in json format
+Channels = []
+config = read_config()
+if "driveController" in config.keys():
+    if "motor" in config["driveController"].keys():
+        print("Initializing Drive Controller")
+        motor1Pins = [int(config["driveController"]["motor"][0]["pin1"]), int(config["driveController"]["motor"][0]["pin2"])]
+        motor2Pins = [int(config["driveController"]["motor"][1]["pin1"]), int(config["driveController"]["motor"][1]["pin2"])]
+        driveMotor1 = Motor(motor1Pins)
+        driveMotor2 = Motor(motor2Pins)
+        DriveController = L298NTrackMotorController(driveMotor1, driveMotor2)
+        Channels = Channels + motor1Pins
+        Channels = Channels + motor2Pins
+
+if "pumpAndArmController" in config.keys():
+    if "pump" in config["pumpAndArmController"].keys():
+        print("Initializing Pump and Arm Controller")
+        pumpPins = [int(config["pumpAndArmController"]["pump"]["pin1"]), int(config["pumpAndArmController"]["pump"]["pin2"])]
+        armPins = [int(config["pumpAndArmController"]["arm"]["pin1"]), int(config["pumpAndArmController"]["arm"]["pin2"])]
+        pump = Motor(pumpPins)
+        arm = Motor(armPins)
+        ArmController = L298NArmAndPumpController(pump, arm)
+        Channels = Channels + pumpPins
+        Channels = Channels + armPins
 
 GPIO.setmode(GPIO.BOARD)
-
-# TO-DO: Make and Read from JSON init file
-Channels = [19, 21, 23, 29, 31, 33, 35, 37]
-motor1Pins = [35, 37]
-motor2Pins = [31, 33]
-armPins = [23, 29]
-pumpPins = [19, 21]
-
+print(Channels)
 GPIO.setup(Channels, GPIO.OUT)
-
-motor1 = Motor(motor1Pins)
-motor2 = Motor(motor2Pins)
-arm = Motor(armPins)
-pump = Motor(pumpPins)
-
-DriveController = L298NTrackMotorController(motor1, motor2)
-ArmController = L298NArmAndPumpController(pump, arm)
 
 command = "start"
 while command != "stop":
