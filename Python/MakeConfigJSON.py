@@ -18,6 +18,7 @@ Pump["pin1"] = input("Enter Pump pin1: ")
 Pump["pin2"] = input("Enter Pump pin2: ")
 Arm["pin1"] = input("Enter Arm pin1: ")
 Arm["pin2"] = input("Enter Arm pin2: ")
+Arm["pwm"] = input("Enter PWM pin: ")
 DriveController = {"motor" : [ Motor1 , Motor2 ]}
 PumpAndArmController = { "pump" : Pump , "arm" : Arm }
 MqttCredentials["clientId"] = input("Enter MQTT clientId: ")
