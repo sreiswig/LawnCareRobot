@@ -56,7 +56,7 @@ def read_cam():
         exit()
 
     if cap.isOpened():
-        while cv2.getWindowProperty("CSI Camera", 0) >= 0:
+        while True:
             ret_val, img = cap.read()
             height, width = img.shape[0:2]
 
