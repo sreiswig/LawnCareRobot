@@ -1,5 +1,12 @@
 import sys
 import cv2
+import json
+
+def read_config():
+    with open("config.json") as config_file:
+        config = json.load(config_file)
+    
+    return config
 
 #Set gstreamer pipeline parameters
 def gstreamer_pipeline(
@@ -31,6 +38,7 @@ def gstreamer_pipeline(
 
 
 def read_cam():
+    config = read_config()
     capture_width = 1280
     capture_height = 720
     display_width = 1280
@@ -49,7 +57,7 @@ def read_cam():
     fps = cap.get(cv2.CAP_PROP_FPS)
     print('Src opened, %dx%d @ %d fps' % (w, h, fps))
 
-    gst_out = "appsrc ! video/x-raw, format=BGR ! queue ! videoconvert ! video/x-raw,format=BGRx ! nvvidconv ! nvv4l2h264enc ! h264parse ! rtph264pay pt=96 config-interval=1 ! udpsink host=192.168.0.85 port=1234 "
+    gst_out = f"appsrc ! video/x-raw, format=BGR ! queue ! videoconvert ! video/x-raw,format=BGRx ! nvvidconv ! nvv4l2h264enc ! h264parse ! rtph264pay pt=96 config-interval=1 ! udpsink host={config['mqtt']['host']} port=1234 "
     out = cv2.VideoWriter(gst_out, cv2.CAP_GSTREAMER, 0, float(fps), (int(w), int(h)))
     if not out.isOpened():
         print("Failed to open output")
