@@ -49,7 +49,7 @@ def read_cam():
     fps = cap.get(cv2.CAP_PROP_FPS)
     print('Src opened, %dx%d @ %d fps' % (w, h, fps))
 
-    gst_out = "appsrc ! video/x-raw, format=BGR ! queue ! videoconvert ! video/x-raw,format=BGRx ! nvvidconv ! nvv4l2h264enc ! h264parse ! rtph264pay pt=96 config-interval=1 ! udpsink host=127.0.0.1 port=5001 "
+    gst_out = "appsrc ! video/x-raw, format=BGR ! queue ! videoconvert ! video/x-raw,format=BGRx ! nvvidconv ! nvv4l2h264enc ! h264parse ! rtph264pay pt=96 config-interval=1 ! udpsink host=192.168.0.85 port=5001 "
     out = cv2.VideoWriter(gst_out, cv2.CAP_GSTREAMER, 0, float(fps), (int(w), int(h)))
     if not out.isOpened():
         print("Failed to open output")
