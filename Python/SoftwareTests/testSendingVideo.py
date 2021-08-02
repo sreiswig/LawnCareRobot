@@ -68,6 +68,10 @@ def read_cam():
         while True:
             ret_val, img = cap.read()
             height, width = img.shape[0:2]
+            print("Image Values: ")
+            print(img)
+            print("Ret Val")
+            print(ret_val)
 
             if width > 800:
                 new_width = 640
