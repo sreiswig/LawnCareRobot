@@ -73,11 +73,6 @@ def read_cam():
             print("Ret Val")
             print(ret_val)
 
-            #if width > 800:
-            #    new_width = 640
-            #    new_height = int(new_width/width*height)
-            #    img = cv2.resize(img, (new_width, new_height))
-
             if not ret_val:
                 break
             out.write(img)
