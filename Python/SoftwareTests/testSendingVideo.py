@@ -58,7 +58,7 @@ def read_cam():
     print('Src opened, %dx%d @ %d fps' % (w, h, fps))
     print(cv2.CAP_GSTREAMER)
 
-    gst_out = f"appsrc ! video/x-raw, format=BGR ! queue ! videoconvert ! video/x-raw,format=BGRx ! nvvidconv ! nvv4l2h264enc ! h264parse ! rtph264pay pt=96 config-interval=1 ! udpsink host={config['mqtt']['host']} port=1234 "
+    gst_out = f"videotestsrc pattern=snow ! videoconvert ! video/x-raw, format=BGRx ! queue ! video/x-raw,format=BGR ! nvvidconv ! nvv4l2h264enc ! h264parse ! rtph264pay pt=96 config-interval=1 ! udpsink host={config['mqtt']['host']} port=1234 "
     out = cv2.VideoWriter(gst_out, cv2.CAP_GSTREAMER, 0, float(fps), (int(w), int(h)))
     if not out.isOpened():
         print("Failed to open output")
