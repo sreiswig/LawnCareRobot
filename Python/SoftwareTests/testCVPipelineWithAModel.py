@@ -39,6 +39,7 @@ def gstreamer_pipeline(
 
 
 def read_cam():
+    model = tf.keras.models.load_model("classifierModel.h5")
     config = read_config()
     capture_width = 1280
     capture_height = 720
@@ -69,9 +70,17 @@ def read_cam():
         while True:
             ret_val, img = cap.read()
             height, width = img.shape[0:2]
+            
+            classifierValue = model.predict(img)
 
             if not ret_val:
                 break
+
+            if classifierValue == 0:
+                cv2.putText(img, 'Weed', (0,0), (0, 0, 255), 1, 2, cv2.LINE_AA)
+            else:
+                cv2.putText(img, 'Not a Weed', (0,0), (0, 255, 0), 1, 2, cv2.LINE_AA)
+
             out.write(img)
             keyCode = cv2.waitKey(30) & 0xFF         
             if keyCode == 27:# ESC key to exit
@@ -83,3 +92,6 @@ def read_cam():
     print("successfully exit")
     cap.release()
     out.release()
+
+if __name__ == '__main__':
+    read_cam()
