@@ -79,9 +79,9 @@ def read_cam():
                 break
 
             if classifierValue == 0:
-                cv2.putText(img, 'Weed', (0,0), (0, 0, 255), 1, 2, cv2.LINE_AA)
+                cv2.putText(img, 'Weed', (50,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
             else:
-                cv2.putText(img, 'Not a Weed', (0,0), (0, 255, 0), 1, 2, cv2.LINE_AA)
+                cv2.putText(img, 'Not a Weed', (50,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
             out.write(img)
             keyCode = cv2.waitKey(30) & 0xFF         
