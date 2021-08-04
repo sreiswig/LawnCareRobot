@@ -78,7 +78,7 @@ def read_cam():
             
             process+=1
 
-            if process%60 == 0:
+            if process%120 == 0:
                 classifierValue = model.predict(input_tensor)
                 process = 0
 
