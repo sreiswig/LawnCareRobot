@@ -73,12 +73,11 @@ def read_cam():
     if cap.isOpened():
         while True:
             ret_val, img = cap.read()
-            img_expanded = np.expand_dims(img, axis=0)
-            input_tensor = tf.convert_to_tensor(img_expanded, dtype=tf.float32)
-            
             process+=1
 
-            if process%120 == 0:
+            if process%180 == 0:
+                img_expanded = np.expand_dims(img, axis=0)
+                input_tensor = tf.convert_to_tensor(img_expanded, dtype=tf.float32)
                 classifierValue = model.predict(input_tensor)
                 process = 0
 
