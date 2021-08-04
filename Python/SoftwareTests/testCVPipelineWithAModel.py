@@ -67,13 +67,20 @@ def read_cam():
         print("Failed to open output")
         exit()
 
+    process = 0
+    classifierValue = 0
+
     if cap.isOpened():
         while True:
             ret_val, img = cap.read()
             img_expanded = np.expand_dims(img, axis=0)
             input_tensor = tf.convert_to_tensor(img_expanded, dtype=tf.float32)
+            
+            process+=1
 
-            classifierValue = model.predict(input_tensor)
+            if process%60 == 0:
+                classifierValue = model.predict(input_tensor)
+                process = 0
 
             if not ret_val:
                 break
@@ -87,7 +94,6 @@ def read_cam():
             keyCode = cv2.waitKey(30) & 0xFF         
             if keyCode == 27:# ESC key to exit
                 break
-
     else:
         print("pipeline open failed")
 
