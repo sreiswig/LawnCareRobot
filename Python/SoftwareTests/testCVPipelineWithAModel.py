@@ -70,8 +70,7 @@ def read_cam():
         while True:
             ret_val, img = cap.read()
             height, width = img.shape[0:2]
-            print("height " + height)
-            print("width " + width)
+            
             classifierValue = model.predict(img)
 
             if not ret_val:
