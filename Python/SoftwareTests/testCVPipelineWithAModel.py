@@ -2,6 +2,7 @@ import sys
 import cv2
 import json
 import tensorflow as tf
+import numpy as np
 
 def read_config():
     with open("config.json") as config_file:
@@ -69,9 +70,10 @@ def read_cam():
     if cap.isOpened():
         while True:
             ret_val, img = cap.read()
-            height, width = img.shape[0:2]
-            
-            classifierValue = model.predict(img)
+            img_expanded = np.expand_dims(img, axis=0)
+            input_tensor = tf.convert_to_tensor(img_expanded, dtype=tf.float32)
+
+            classifierValue = model.predict(input_tensor)
 
             if not ret_val:
                 break
