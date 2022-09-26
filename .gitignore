@@ -1,3 +1,5 @@
 config.*
 *.jpg
 *.h5
+appConfig.*
+Data/

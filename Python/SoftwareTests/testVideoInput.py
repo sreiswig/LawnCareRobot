@@ -1,35 +1,7 @@
 
 import cv2 as cv
 import numpy as np
-
-#Set gstreamer pipeline parameters
-def gstreamer_pipeline(
-    capture_width=1280, #Camera pre-captured image width
-    capture_height=720, #Camera pre-captured image height
-    display_width=1280, #Window display image width
-    display_height=720, #Window display image height
-    framerate=60,       #Capture frame rate
-    flip_method=0,      #Whether to rotate the image
-):
-    return (
-        "nvarguscamerasrc ! "
-        "video/x-raw(memory:NVMM), "
-        "width=(int)%d, height=(int)%d, "
-        "format=(string)NV12, framerate=(fraction)%d/1 ! "
-        "nvvidconv flip-method=%d ! "
-        "video/x-raw, width=(int)%d, height=(int)%d, format=(string)BGRx ! "
-        "videoconvert ! "
-        "video/x-raw, format=(string)BGR ! appsink"
-        % (
-            capture_width,
-            capture_height,
-            framerate,
-            flip_method,
-            display_width,
-            display_height,
-        )
-    )
-
+import test_utils
 
 if __name__ == "__main__":
     capture_width = 1280
@@ -40,10 +12,10 @@ if __name__ == "__main__":
     flip_method = 0
 
     # Create pipeline
-    print(gstreamer_pipeline(capture_width,capture_height,display_width,display_height,framerate,flip_method))
+    print(test_utils.gstreamer_pipeline(capture_width,capture_height,display_width,display_height,framerate,flip_method))
 
     #Pipeline and video stream binding
-    cap = cv.VideoCapture(gstreamer_pipeline(flip_method=0), cv.CAP_GSTREAMER)
+    cap = cv.VideoCapture(test_utils.gstreamer_pipeline(flip_method=0), cv.CAP_GSTREAMER)
 
     if cap.isOpened():
         window_handle = cv.namedWindow("CSI Camera", cv.WINDOW_AUTOSIZE)
