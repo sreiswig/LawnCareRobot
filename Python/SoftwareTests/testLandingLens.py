@@ -20,7 +20,7 @@ def test():
 
     if cap.isOpened():
         ret_val, img = cap.read()
-        files = {'file': img}
+        files = {'file': img.tobytes()}
         response = requests.post(api_json['url'], headers=api_json['headers'], files=files)
         print(response.json())
     else:
