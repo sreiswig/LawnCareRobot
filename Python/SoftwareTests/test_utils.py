@@ -6,6 +6,11 @@ def read_config():
     
     return config
 
+def read_app_config():
+    with open("appConfig.json") as appConfig_file:
+        config = json.load(appConfig_file)
+        return config
+
 #Set gstreamer pipeline parameters
 def gstreamer_pipeline(
     capture_width=1280, #Camera pre-captured image width
