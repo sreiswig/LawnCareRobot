@@ -22,6 +22,7 @@ def test():
         ret_val, img = cap.read()
         files = {'file': img}
         response = requests.post(api_json['url'], headers=api_json['headers'], files=files)
+        print(response.json())
     else:
         print("Failed to open the camera")
 
