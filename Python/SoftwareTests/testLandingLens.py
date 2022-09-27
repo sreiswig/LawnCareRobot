@@ -1,7 +1,6 @@
 import test_utils
 import requests
 import cv2 as cv
-from PIL import Image
 
 def test():
     api_json = test_utils.read_app_config()
@@ -25,10 +24,9 @@ def test():
         if not ret_val:
             print("failed to grab frame")
             return
-        im = Image.fromarray(img)
-        print(type(im))
+        conversion_success, im = cv.imencode(".png", img)
 
-        files = {'file': im}
+        files = {'file': im.tobytes()}
         response = requests.post(api_json['url'], headers=api_json['headers'], files=files)
         print(response.json())
     else:
