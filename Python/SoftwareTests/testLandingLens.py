@@ -20,6 +20,13 @@ def test():
 
     if cap.isOpened():
         ret_val, img = cap.read()
+        # Failed to grab an image
+        if not ret_val:
+            print("failed to grab frame")
+            return
+
+        print(type(img))
+
         files = {'file': img.tobytes()}
         response = requests.post(api_json['url'], headers=api_json['headers'], files=files)
         print(response.json())
